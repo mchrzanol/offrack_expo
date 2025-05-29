@@ -168,6 +168,10 @@ module.exports = {
           info: 'rgb(var(--color-indicator-info)/<alpha-value>)',
           error: 'rgb(var(--color-indicator-error)/<alpha-value>)',
         },
+        'app-primary':'#e6e6e6',
+        'app-background':'#ffffff',
+        'app-secondary':'#222222',
+        'app-card':'#f5f5f5',
       },
       fontFamily: {
         heading: undefined,
