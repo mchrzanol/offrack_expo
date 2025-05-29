@@ -11,7 +11,9 @@ export default function RootLayout() {
         contentStyle: { backgroundColor: 'transparent' },
         animation: 'fade_from_bottom',
         animationDuration: 300,
-      }}/>
-      </GluestackUIProvider>
+      }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </GluestackUIProvider>
   );
 }

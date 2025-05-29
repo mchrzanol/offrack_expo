@@ -7,9 +7,10 @@ export default function Index() {
   return (
     <SafeAreaView
       className="flex-1 bg-app-background items-center"
+      edges={['top']}
     >
         <Text className="text-3xl font-bold mb-2">OffRack</Text>
-      <ScrollView className="flex-1 w-full h-full flex-col px-5" showsVerticalScrollIndicator={false}>
+      <ScrollView className="flex-1 w-full h-full flex-col px-5 " showsVerticalScrollIndicator={false}>
         <Input
           variant="outline"
           size="md"
