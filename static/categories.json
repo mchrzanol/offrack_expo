@@ -1,0 +1,38 @@
+[
+  {
+    "name": "T-shirty",
+    "subcategories": ["Oversize", "Crop top", "Z nadrukiem", "Basic"]
+  },
+  {
+    "name": "Bluzy",
+    "subcategories": ["Z kapturem", "Bez kaptura", "Rozpinane", "Oversize"]
+  },
+  {
+    "name": "Spodnie",
+    "subcategories": ["Jeansy", "Dresowe", "Materiałowe", "Cargo"]
+  },
+  {
+    "name": "Kurtki",
+    "subcategories": ["Puchowe", "Jeansowe", "Bomberki", "Skórzane"]
+  },
+  {
+    "name": "Koszule",
+    "subcategories": ["Casual", "Eleganckie", "Oversize", "Lniane"]
+  },
+  {
+    "name": "Sukienki",
+    "subcategories": ["Na co dzień", "Na wieczór", "Letnie", "Midi", "Mini"]
+  },
+  {
+    "name": "Spódnice",
+    "subcategories": ["Mini", "Midi", "Maxi", "Jeansowe"]
+  },
+  {
+    "name": "Buty",
+    "subcategories": ["Sneakersy", "Trampki", "Botki", "Sandały"]
+  },
+  {
+    "name": "Akcesoria",
+    "subcategories": ["Torby", "Czapki", "Biżuteria", "Okulary"]
+  }
+]

@@ -28,7 +28,10 @@ export default function Index() {
           <Text className="text-[#b6b6b6] text-lg">Tutaj będą promocje dnia/wyprzedaże</Text>
         </View>
         <View className="w-full h-auto mt-10 flex-col">
-          <Text className="text-app-secondary text-2xl font-medium">Trendujące teraz</Text>
+          <View className="flex-row w-full items-center">
+            <Ionicons name="heart" size={28} color="app-secondary"/>
+            <Text className="text-app-secondary text-2xl font-medium ml-2">Trendujące teraz</Text>
+          </View>
           <ScrollView className="w-full mt-3 h-auto" horizontal showsHorizontalScrollIndicator={false}>
               {Array.from({ length: 10 }).map((_, index) => (
                 <View
@@ -51,7 +54,10 @@ export default function Index() {
         </View>
 
         <View className="w-full h-auto mt-10 flex-col">
-          <Text className="text-app-secondary text-2xl font-medium mb-3">Nowe Kolekcje</Text>
+          <View className="flex-row w-full mb-3 items-center">
+            <Ionicons name="compass" size={28} color="app-secondary"/>
+            <Text className="text-app-secondary text-2xl font-medium ml-3">Nowe Kolekcje</Text>
+          </View>
               {Array.from({ length: 10 }).map((_, index) => (
                 <View
                   key={index}

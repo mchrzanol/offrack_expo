@@ -18,6 +18,27 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="search" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="brands"
+        options={{
+          title: 'Brands',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="cube" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="wishlist"
+        options={{
+          title: 'Wishlist',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="bookmark" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
