@@ -1,15 +1,34 @@
 import { Input, InputField, InputSlot } from "@/components/ui/input";
 import { Ionicons } from "@expo/vector-icons";
-import { ScrollView, Text, View } from "react-native";
+import { useNavigation } from "expo-router";
+import { useEffect, useState } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import fetchData from "../api/fetchData";
 
 export default function Index() {
+  const navigation = useNavigation();
+
+  const [clothes, setClothes] = useState([]);
+
+  useEffect(() => {
+    // Simulate fetching clothes data
+    const fetchClothes = async () => {
+      const data = await fetchData('clothes');
+      setClothes(data);
+    }
+    fetchClothes();
+  },[]);
+
   return (
     <SafeAreaView
       className="flex-1 bg-app-background items-center"
       edges={['top']}
     >
         <Text className="text-3xl font-bold mb-2">OffRack</Text>
+        <Text className="text-sm text-gray-400">
+          {clothes.length ? `${clothes.length} produktów załadowanych` : "Ładowanie..."}
+        </Text>
       <ScrollView className="flex-1 w-full h-full flex-col px-5 " showsVerticalScrollIndicator={false}>
         <Input
           variant="outline"
@@ -34,21 +53,23 @@ export default function Index() {
           </View>
           <ScrollView className="w-full mt-3 h-auto" horizontal showsHorizontalScrollIndicator={false}>
               {Array.from({ length: 10 }).map((_, index) => (
-                <View
-                  key={index}
-                  className="w-64 h-auto bg-transparent m-1"
-                >
+                <Pressable onPress={()=>navigation.navigate('productDetails' as never)} key={index}>
                   <View
                     key={index}
-                    className="w-64 h-96 bg-app-card rounded-lg justify-center items-center relative"
+                    className="w-64 h-auto bg-transparent m-1"
                   >
-                    <Ionicons name="heart-outline" size={28} color="#b6b6b6" className="absolute top-4 right-4" />
-                    <Text className="text-black text-lg">Produkt {index + 1}</Text>
+                    <View
+                      key={index}
+                      className="w-64 h-96 bg-app-card rounded-lg justify-center items-center relative"
+                    >
+                      <Ionicons name="heart-outline" size={28} color="#b6b6b6" className="absolute top-4 right-4" />
+                      <Text className="text-black text-lg">Produkt {index + 1}</Text>
+                    </View>
+                    <Text className="text-app-secondary text-lg mt-3 font-semibold">Enrage</Text>
+                    <Text className="text-app-secondary text-base">Biała koszula</Text>
+                    <Text className="text-app-secondary text-lg mt-1">{Math.floor(Math.random() * 100) + 1} zł</Text>
                   </View>
-                  <Text className="text-app-secondary text-lg mt-3 font-semibold">Enrage</Text>
-                  <Text className="text-app-secondary text-base">Biała koszula</Text>
-                  <Text className="text-app-secondary text-lg mt-1">{Math.floor(Math.random() * 100) + 1} zł</Text>
-                </View>
+                </Pressable>
               ))}
           </ScrollView>
         </View>

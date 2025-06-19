@@ -9,10 +9,11 @@ export default function RootLayout() {
       <Stack screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: 'transparent' },
-        animation: 'fade_from_bottom',
-        animationDuration: 300,
+        animation: 'slide_from_right',
+        animationDuration: 10,
       }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="productDetails" options={{ headerShown: false }} />
       </Stack>
     </GluestackUIProvider>
   );
