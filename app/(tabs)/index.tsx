@@ -1,24 +1,41 @@
 import { Input, InputField, InputSlot } from "@/components/ui/input";
+import { Tables } from "@/database.types";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import fetchData from "../api/fetchData";
+import fetchClothesAPI from "../api/fetchClothes";
+
 
 export default function Index() {
   const navigation = useNavigation();
 
-  const [clothes, setClothes] = useState([]);
+  const [clothes, setClothes] = useState<(Tables<'clothes'>  & {
+    brand: {
+      name: string;
+    };
+    images: { name: string; url: string }[];
+  })[]>([]);
 
   useEffect(() => {
     // Simulate fetching clothes data
     const fetchClothes = async () => {
-      const data = await fetchData('clothes');
+      const data = await fetchClothesAPI();
       setClothes(data);
     }
     fetchClothes();
   },[]);
+
+  const formatPrice = (price: number) => {
+  const str = price.toString().replace('.', ',');
+  const [whole, fraction] = str.split(',');
+
+  if (!fraction) return `${whole},00`;
+  if (fraction.length === 1) return `${whole},${fraction}0`;
+  return `${whole},${fraction}`;
+};
 
   return (
     <SafeAreaView
@@ -52,7 +69,7 @@ export default function Index() {
             <Text className="text-app-secondary text-2xl font-medium ml-2">Trendujące teraz</Text>
           </View>
           <ScrollView className="w-full mt-3 h-auto" horizontal showsHorizontalScrollIndicator={false}>
-              {Array.from({ length: 10 }).map((_, index) => (
+              {clothes.map((clothe, index) => (
                 <Pressable onPress={()=>navigation.navigate('productDetails' as never)} key={index}>
                   <View
                     key={index}
@@ -62,12 +79,17 @@ export default function Index() {
                       key={index}
                       className="w-64 h-96 bg-app-card rounded-lg justify-center items-center relative"
                     >
-                      <Ionicons name="heart-outline" size={28} color="#b6b6b6" className="absolute top-4 right-4" />
-                      <Text className="text-black text-lg">Produkt {index + 1}</Text>
+                      <Ionicons name="heart-outline" size={28} color="#000000" className="absolute top-4 right-4" style={{zIndex:10}} />
+                      {/* <Text className="text-black text-lg">Produkt {index + 1}</Text> */}
+                      <Image 
+                        source={{ uri: clothe.images.find(item => item.name.startsWith("front"))?.url || "https://via.placeholder.com/150" }}
+                        style={{ width: '100%', height: '100%', borderRadius: 12, zIndex: 1 }}
+                        contentFit="cover"
+                        />
                     </View>
-                    <Text className="text-app-secondary text-lg mt-3 font-semibold">Enrage</Text>
-                    <Text className="text-app-secondary text-base">Biała koszula</Text>
-                    <Text className="text-app-secondary text-lg mt-1">{Math.floor(Math.random() * 100) + 1} zł</Text>
+                    <Text className="text-app-secondary text-lg mt-3 font-semibold">{clothe.brand?.name || ""}</Text>
+                    <Text className="text-app-secondary text-base">{clothe.name}</Text>
+                    <Text className="text-app-secondary text-lg mt-1">{formatPrice(clothe.is_discounted ? clothe.price : clothe.original_price)} zł</Text>
                   </View>
                 </Pressable>
               ))}
