@@ -32,7 +32,7 @@ const TrendingSection:React.FC<trendingSectionProps> = ({clothes, navigation}) =
           </View>
           <ScrollView className="w-full mt-3 h-auto" horizontal showsHorizontalScrollIndicator={false}>
               {clothes.map((clothe, index) => (
-                <Pressable onPress={()=>navigation.navigate('productDetails' as never)} key={index}>
+                <Pressable onPress={()=>navigation.navigate('productDetails' as never, {id:clothe.id, name:clothe.name, brand_name:clothe.brand?.name})} key={index}>
                   <View
                     key={index}
                     className="w-64 h-auto bg-transparent m-1"
