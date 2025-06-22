@@ -24,6 +24,24 @@ const TrendingSection:React.FC<trendingSectionProps> = ({clothes, navigation}) =
         if (fraction.length === 1) return `${whole},${fraction}0`;
         return `${whole},${fraction}`;
     };
+
+    const onPress = (index: number) => {
+        // Handle the press action, e.g., navigate to product details
+        const clothe = clothes[index];
+
+        const frontImage = clothe.images.find(image => image.name.startsWith("front"))?.url;
+        const otherImages = clothe.images.filter(image => image.url !== frontImage).map(image => image.url);
+
+        navigation.navigate('productDetails' as never, {
+          id: clothe.id,
+          name: clothe.name, 
+          brand_name: clothe.brand?.name,
+          description: clothe.description || "Brak opisu",
+          price: clothe.is_discounted ? clothe.price : clothe.original_price,
+          original_price: clothe.original_price,
+          images: [frontImage, ...otherImages]
+        });
+    }
   return (
         <View className="w-full h-auto mt-10 flex-col">
           <View className="flex-row w-full items-center">
@@ -32,7 +50,7 @@ const TrendingSection:React.FC<trendingSectionProps> = ({clothes, navigation}) =
           </View>
           <ScrollView className="w-full mt-3 h-auto" horizontal showsHorizontalScrollIndicator={false}>
               {clothes.map((clothe, index) => (
-                <Pressable onPress={()=>navigation.navigate('productDetails' as never, {id:clothe.id, name:clothe.name, brand_name:clothe.brand?.name})} key={index}>
+                <Pressable onPress={() => onPress(index)} key={index}>
                   <View
                     key={index}
                     className="w-64 h-auto bg-transparent m-1"

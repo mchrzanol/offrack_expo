@@ -31,7 +31,7 @@ export default function Index() {
   return (
     <SafeAreaView
       className="flex-1 bg-app-background items-center"
-      edges={['top']}
+      edges={['top', 'bottom']}
     >
         <Text className="text-3xl font-bold mb-2">OffRack</Text>
         <Text className="text-sm text-gray-400">
