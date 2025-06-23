@@ -29,9 +29,6 @@ const TrendingSection:React.FC<trendingSectionProps> = ({clothes, navigation}) =
         // Handle the press action, e.g., navigate to product details
         const clothe = clothes[index];
 
-        const frontImage = clothe.images.find(image => image.name.startsWith("front"))?.url;
-        const otherImages = clothe.images.filter(image => image.url !== frontImage).map(image => image.url);
-
         navigation.navigate('productDetails' as never, {
           id: clothe.id,
           name: clothe.name, 
@@ -39,7 +36,8 @@ const TrendingSection:React.FC<trendingSectionProps> = ({clothes, navigation}) =
           description: clothe.description || "Brak opisu",
           price: clothe.is_discounted ? clothe.price : clothe.original_price,
           original_price: clothe.original_price,
-          images: [frontImage, ...otherImages]
+          buy_link:clothe.buy_link,
+          images: clothe.images.map(image => image.url),
         });
     }
   return (

@@ -5,15 +5,15 @@ import { useRoute } from '@react-navigation/native'
 import { BlurView } from 'expo-blur'
 import { useNavigation } from 'expo-router'
 import React from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Linking, ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const productDetails = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const {id, name, brand_name, description,price,original_price, images} = route.params as {id: string, name: string, brand_name: string,price:number,original_price:number, description:string, images: string[]};
+  const {id, name, brand_name, description,price,original_price,buy_link, images} = route.params as {id: string, name: string, brand_name: string,price:number,original_price:number, description:string,buy_link:string, images: string[]};
 
-  if(!id || !name || !brand_name || !price || !original_price || !images || images.length === 0) {
+  if(!id || !name || !brand_name || !price || !original_price || !buy_link || !images || images.length === 0) {
     return (
       <SafeAreaView className="flex-1 bg-app-background items-center justify-center">
         <Text className="text-app-secondary text-lg">Nie znaleziono produktu</Text>
@@ -34,7 +34,7 @@ const productDetails = () => {
     <SafeAreaView
         className="flex-1 bg-app-background items-center"
         style={{ position: 'relative' }}
-        edges={['top', 'bottom']}
+        edges={['top']}
         >
         <View className="w-full h-full relative">
           {/* Top absolute view */}
@@ -50,9 +50,15 @@ const productDetails = () => {
               <BlurView
                 intensity={2}
                 tint="default"
-                className="absolute bottom-0 w-full h-7 z-10"
+                className="absolute bottom-0 w-full h-11 z-10"
               />
-              <Button style ={{width:'40%'}} className='z-30 h-12 mb-5 bg-app-background border border-black flex-row justify-center items-center rounded-xl'>
+              <Button 
+              style ={{width:'40%'}} 
+              className='z-30 h-12 mb-10 bg-app-background border border-black flex-row justify-center items-center rounded-xl'
+              onPress={()=> {
+                Linking.openURL(buy_link)
+              }}
+              >
                 <ButtonText className='text-black text-lg font-semibold'>
                   Kup Teraz
                 </ButtonText>
