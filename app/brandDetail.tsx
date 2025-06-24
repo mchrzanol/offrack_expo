@@ -7,7 +7,7 @@ export default class brandDetails extends Component {
     return (
     <SafeAreaView
         className="flex-1 bg-app-background items-center"
-        edges={['top']}
+        edges={['top', 'bottom']}
         >
         <Text>brandDetails</Text>
       </SafeAreaView>

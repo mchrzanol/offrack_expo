@@ -67,7 +67,15 @@ const TrendingSection:React.FC<trendingSectionProps> = ({clothes, navigation}) =
                     </View>
                     <Text className="text-app-secondary text-lg mt-3 font-semibold">{clothe.brand?.name || ""}</Text>
                     <Text className="text-app-secondary text-base">{clothe.name}</Text>
-                    <Text className="text-app-secondary text-lg mt-1">{formatPrice(clothe.is_discounted ? clothe.price : clothe.original_price)} zł</Text>
+                    {/* <Text className="text-app-secondary text-lg mt-1">{formatPrice(clothe.is_discounted ? clothe.price : clothe.original_price)} zł</Text> */}
+                    {clothe.original_price == clothe.price ? (
+                      <Text className="text-app-secondary text-lg mt-1">{formatPrice(clothe.price)}zł</Text>
+                    ): (
+                      <Text className="text-app-secondary text-lg mt-1 space-x-2">
+                        <Text className="line-through text-sm">{formatPrice(clothe.original_price)}zł </Text>
+                        <Text className="text-red-500 font-semibold">{formatPrice(clothe.price)}zł</Text>
+                      </Text>
+                    )}
                   </View>
                 </Pressable>
               ))}
