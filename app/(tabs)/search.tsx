@@ -1,18 +1,29 @@
 import { Input, InputField, InputSlot } from "@/components/ui/input";
 import { Ionicons } from '@expo/vector-icons';
-import { ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import categoriesData from '@/static/categories.json'; // Assuming you have a categories.json file with category data
+import { Tables } from "@/database.types";
+import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
+import fetchCategoryAPI from "../api/fetchCategory";
 
-type Category = { name: string; subcategories: string[] };
 
 export default function Tab() {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const navigation:any = useNavigation();
+  const [categories, setCategories] = useState<Tables<'category'>[]>([]);
 
   useEffect(() => {
-    setCategories(categoriesData);
+    const fetchCategories = async () => {
+      try {
+        const data = await fetchCategoryAPI();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
   }, []);
   return (
     <SafeAreaView
@@ -36,6 +47,7 @@ export default function Tab() {
         <ScrollView className="flex-1 w-full h-full flex-col mt-4" showsVerticalScrollIndicator={false}>
         <Text className="text-app-secondary text-2xl font-medium mb-3">Kategorie</Text>
         {categories.map((category, index) => (
+          <Pressable onPress={() =>navigation.navigate('categoryView', { category_id: category.id, category_name: category.name })} key={index}>
             <View
                 key={index}
                 className="w-full h-12 rounded-lg justify-center relative border-b border-app-secondary"
@@ -43,6 +55,7 @@ export default function Tab() {
                 <Text className="text-black text-lg ml-1">{category.name}</Text>
                 <Ionicons name="chevron-forward-outline" size={22} color="#000000" className="absolute right-4" />
             </View>
+          </Pressable>
         ))}
         </ScrollView>
     </SafeAreaView>
