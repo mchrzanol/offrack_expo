@@ -11,6 +11,7 @@ import {
 interface ScrollingTextProps {
   text: string;
   speed?: number; // pixels per second
+  fontSize?: number;
   containerStyle?: ViewStyle;
   textStyle?: TextStyle;
 }
@@ -19,6 +20,7 @@ const ScrollingText: React.FC<ScrollingTextProps> = ({
   text,
   speed = 50,
   containerStyle,
+  fontSize = 16,
   textStyle,
 }) => {
   const translateX = useRef(new Animated.Value(0)).current;
@@ -57,6 +59,7 @@ const ScrollingText: React.FC<ScrollingTextProps> = ({
         style={[
           { transform: [{ translateX }] },
           styles.text,
+          { fontSize: fontSize, width: fontSize * text.length },
           textStyle,
         ]}
       >
@@ -73,8 +76,7 @@ const styles = StyleSheet.create({
     height: 24,
   },
   text: {
-    position: 'absolute',
-    width: 200
+    position: 'absolute'
   },
 });
 

@@ -31,19 +31,20 @@ export default function Tab() {
       edges={['top']}
     >
         <Text className="text-3xl font-semibold mb-2 mt-10">Search</Text>
-        <Input
-          variant="outline"
-          size="md"
-          className="bg-app-primary border-0 mt-3"
-          isDisabled={false}
-          isInvalid={false}
-          isReadOnly={false}
-        >
-          <InputSlot>
-              <Ionicons name="search-outline" className="ml-2" size={20} color="#b6b6b6" />
-          </InputSlot>
-          <InputField placeholder="Szukaj" className="text-[#b6b6b6]" />
-        </Input>
+          <Input
+            variant="outline"
+            size="md"
+            className="bg-app-primary border-0 mt-3 relative"
+            isDisabled={false}
+            isInvalid={false}
+            isReadOnly={false}
+          >
+            <Pressable onPress={() => navigation.navigate('findClothes' as never)} className="bg-transparent absolute top-0 w-full h-14 z-20"/>
+            <InputSlot>
+                <Ionicons name="search-outline" className="ml-2" size={20} color="#b6b6b6" />
+            </InputSlot>
+            <InputField placeholder="Czego szukasz?" className="text-[#b6b6b6]" pointerEvents="none" />
+          </Input>
         <ScrollView className="flex-1 w-full h-full flex-col mt-4" showsVerticalScrollIndicator={false}>
         <Text className="text-app-secondary text-2xl font-medium mb-3">Kategorie</Text>
         {categories.map((category, index) => (

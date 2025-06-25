@@ -77,7 +77,7 @@ const categoryView = () => {
                     <Ionicons name="chevron-back" className='p-3 absolute -top-1 left-0' size={28} color="app-secondary" onPress={()=>navigation.goBack()}/>
                     <View className='flex-1 items-center justify-center flex-col w-full bg-transparent'>
                         <Text className='text-app-secondary text-2xl font-semibold'>{category_name}</Text>
-                        <Text className='text-app-secondary text-lg'>{clothes.length} elementów</Text>
+                        <Text className='text-app-secondary text-lg'>{clothes.length} {"element" + (clothes.length === 1 ? "" : clothes.length == 0 ? "ów" : "y")}</Text>
                     </View>
                 </View>
                 {/* Filters and sorting */}
@@ -109,6 +109,8 @@ const categoryView = () => {
                                 {/* <Text className="text-app-secondary font-semibold">{clothe.name}</Text> */}
                                 <ScrollingText
                                     text={clothe.name || ""}
+                                    fontSize={15}
+                                    textStyle={{ color: 'black', fontWeight: 'semibold' }}
                                 />
                                 <Text className="text-app-secondary text-sm">
                                 {clothe.brand?.name || 'Brak marki'}

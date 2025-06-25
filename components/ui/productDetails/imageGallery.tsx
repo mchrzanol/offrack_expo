@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 import React, { useRef, useState } from 'react';
-import { LayoutChangeEvent, NativeScrollEvent, NativeSyntheticEvent, ScrollView, useWindowDimensions, View } from 'react-native';
+import { Dimensions, LayoutChangeEvent, NativeScrollEvent, NativeSyntheticEvent, ScrollView, useWindowDimensions, View } from 'react-native';
 
 
 interface ImageGalleryProps {
@@ -13,7 +13,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ productImages }) => {
   const padding = 20; // 1.25rem = 20px
   const imageWidth = width - padding * 2;
   const [activeIndex, setActiveIndex] = useState(0);
-    const [containerWidth, setContainerWidth] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const fullScreenHeight = Dimensions.get('screen').height;
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
@@ -27,7 +28,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ productImages }) => {
   };
 
   return (
-    <View className='z-10 relative' onLayout={handleLayout}>
+    <View className='z-10 relative' style={{height:fullScreenHeight*0.6}} onLayout={handleLayout}>
       <ScrollView
         ref={scrollRef}
         horizontal
@@ -35,7 +36,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ productImages }) => {
         showsHorizontalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={16}
-        style={{ width:containerWidth, height: '60%' }}
+        style={{ width:containerWidth, height: '100%' }}
       >
         {productImages.map((uri, index) => (
           <Image

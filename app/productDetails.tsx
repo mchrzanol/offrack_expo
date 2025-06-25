@@ -38,13 +38,13 @@ const productDetails = () => {
         >
         <View className="w-full h-full relative">
           {/* Top absolute view */}
-          <View className='absolute top-0 left-0 bg-transparent z-20 p-2 w-full flex-row justify-between'>
+          {/* <View className='absolute top-0 left-0 bg-transparent z-20 p-2 w-full flex-row justify-between'>
             <Ionicons name="chevron-back" className='p-3' size={28} color="app-secondary" onPress={()=>navigation.goBack()}/>
               <View className='flex-col items-center'>
                 <Ionicons name="heart-outline" className='p-3' size={28} color="app-secondary" />
                 <Ionicons name="share-outline" className='p-3' size={28} color="app-secondary" />
               </View>
-          </View>
+          </View> */}
           {/* Bottom absolute view */}
           <View className='absolute bottom-0 left-0 bg-transparent z-20 w-full justify-center items-center'>
               <BlurView
@@ -67,11 +67,18 @@ const productDetails = () => {
             {/* <Ionicons name="cart-outline" size={28} color="app-secondary" /> */}
           </View>
           {/* Main content */}
-          <ImageGallery productImages={images} />
           <ScrollView
             showsVerticalScrollIndicator={false}
-            className='w-full'
+            className='w-full relative'
           >
+          <View className='absolute top-0 left-0 bg-transparent z-20 p-2 w-full flex-row justify-between'>
+            <Ionicons name="chevron-back" className='p-3' size={28} color="app-secondary" onPress={()=>navigation.goBack()}/>
+              <View className='flex-col items-center'>
+                <Ionicons name="heart-outline" className='p-3' size={28} color="app-secondary" />
+                <Ionicons name="share-outline" className='p-3' size={28} color="app-secondary" />
+              </View>
+          </View>
+            <ImageGallery productImages={images} />
             <View className="w-full h-auto px-5 mt-5 pb-32">
               <Text className="text-app-secondary text-2xl font-semibold">{name}</Text>
               <Text className="text-app-secondary text-lg mt-1">{brand_name}</Text>
