@@ -37,14 +37,6 @@ const productDetails = () => {
         edges={['top']}
         >
         <View className="w-full h-full relative">
-          {/* Top absolute view */}
-          {/* <View className='absolute top-0 left-0 bg-transparent z-20 p-2 w-full flex-row justify-between'>
-            <Ionicons name="chevron-back" className='p-3' size={28} color="app-secondary" onPress={()=>navigation.goBack()}/>
-              <View className='flex-col items-center'>
-                <Ionicons name="heart-outline" className='p-3' size={28} color="app-secondary" />
-                <Ionicons name="share-outline" className='p-3' size={28} color="app-secondary" />
-              </View>
-          </View> */}
           {/* Bottom absolute view */}
           <View className='absolute bottom-0 left-0 bg-transparent z-20 w-full justify-center items-center'>
               <BlurView
@@ -71,6 +63,7 @@ const productDetails = () => {
             showsVerticalScrollIndicator={false}
             className='w-full relative'
           >
+            {/* Top absolute view */}
           <View className='absolute top-0 left-0 bg-transparent z-20 p-2 w-full flex-row justify-between'>
             <Ionicons name="chevron-back" className='p-3' size={28} color="app-secondary" onPress={()=>navigation.goBack()}/>
               <View className='flex-col items-center'>

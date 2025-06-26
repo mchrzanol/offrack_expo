@@ -15,6 +15,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="productDetails" options={{ headerShown: false }} />
         <Stack.Screen name="categoryView" options={{ headerShown: false }} />
+        <Stack.Screen name="brandView" options={{ headerShown: false }} />
         <Stack.Screen name="findClothes" options={{ 
           headerShown: false,
           animation: 'fade_from_bottom',
