@@ -81,7 +81,7 @@ const categoryView = () => {
                     </View>
                 </View>
                 {/* Filters and sorting */}
-                <View className='z-20 mt-2 w-full flex-row items-center justify-center bg-transparent'>
+                <View className='z-20 mt-2 w-full flex-row items-center justify-center bg-transparent mb-2'>
                     <Button className='bg-app-background border border-black rounded-lg'>
                         <Ionicons name="filter" size={24} color="app-secondary" />
                         <ButtonText className='text-app-secondary text-lg'>Filtruj</ButtonText>

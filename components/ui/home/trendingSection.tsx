@@ -26,7 +26,6 @@ const TrendingSection:React.FC<trendingSectionProps> = ({clothes, navigation}) =
     };
 
     const onPress = (index: number) => {
-        // Handle the press action, e.g., navigate to product details
         const clothe = clothes[index];
 
         navigation.navigate('productDetails' as never, {

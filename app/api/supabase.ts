@@ -51,7 +51,8 @@ class LargeSecureStore {
     await AsyncStorage.setItem(key, encrypted);
   }
 }
-
+//Pokazowo zostawiłem klucze, ale w prawdziwej aplikacji powinny być one przechowywane w bezpieczniejszy sposób
+// np. w zmiennych środowiskowych
 export const supabase = createClient<Database>("https://nbyhskkxmekplrhtwckq.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ieWhza2t4bWVrcGxyaHR3Y2txIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAzMzMzMTMsImV4cCI6MjA2NTkwOTMxM30.FuESOpKjwHnNp3Te4-vwQb87lKNN8UkvvH5H_2t4NRM", {
   auth: {
     storage: new LargeSecureStore(),
