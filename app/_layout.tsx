@@ -15,10 +15,16 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="productDetails" options={{ headerShown: false }} />
         <Stack.Screen name="categoryView" options={{ headerShown: false }} />
+        <Stack.Screen name="brandView" options={{ headerShown: false }} />
+        <Stack.Screen name="sortAndFilterView" options={{ 
+          headerShown: false,
+          animation: 'fade_from_bottom',
+          animationDuration: 300,
+          }} />
         <Stack.Screen name="findClothes" options={{ 
           headerShown: false,
           animation: 'fade_from_bottom',
-          animationDuration: 100,
+          animationDuration: 300,
            }} />
       </Stack>
     </GluestackUIProvider>
