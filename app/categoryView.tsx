@@ -74,7 +74,7 @@ const categoryView = () => {
             <View className="w-full h-full relative">
                 {/* Top absolute view */}
                 <View className='z-20 p-2 w-full flex-row items-center justify-center bg-transparent relative'>
-                    <Ionicons name="chevron-back" className='p-3 absolute -top-1 left-0' size={28} color="app-secondary" onPress={()=>navigation.goBack()}/>
+                    <Ionicons name="chevron-back" className='p-3 absolute -top-1 left-0' size={28} color="app-secondary" onPress={()=>{navigation.goBack()}}/>
                     <View className='flex-1 items-center justify-center flex-col w-full bg-transparent'>
                         <Text className='text-app-secondary text-2xl font-semibold'>{category_name}</Text>
                         <Text className='text-app-secondary text-lg'>{clothes.length} {"element" + (clothes.length === 1 ? "" : clothes.length == 0 ? "ów" : "y")}</Text>
@@ -87,14 +87,7 @@ const categoryView = () => {
                         onPress={() => navigation.navigate('sortAndFilterView' as never)}
                      >
                         <Ionicons name="filter" size={24} color="app-secondary" />
-                        <ButtonText className='text-app-secondary text-lg'>Filtruj</ButtonText>
-                    </Button>
-                    <Button 
-                        className='bg-app-background border border-black ml-10 rounded-lg'
-                        onPress={() => navigation.navigate('sortAndFilterView' as never)}
-                    >
-                        <Ionicons name="options" size={24} color="app-secondary" />
-                        <ButtonText className='text-app-secondary text-lg'>Sortuj</ButtonText>
+                        <ButtonText className='text-app-secondary text-lg'>Sortuj i Filtruj</ButtonText>
                     </Button>
                 </View>
                 <FlatList
