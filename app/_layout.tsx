@@ -19,12 +19,12 @@ export default function RootLayout() {
         <Stack.Screen name="sortAndFilterView" options={{ 
           headerShown: false,
           animation: 'fade_from_bottom',
-          animationDuration: 100,
+          animationDuration: 300,
           }} />
         <Stack.Screen name="findClothes" options={{ 
           headerShown: false,
           animation: 'fade_from_bottom',
-          animationDuration: 100,
+          animationDuration: 300,
            }} />
       </Stack>
     </GluestackUIProvider>

@@ -7,11 +7,14 @@ import { Tables } from "@/database.types";
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
 import fetchCategoryAPI from "../api/fetchCategory";
+import { useFilterStore } from "../store/filterStore";
 
 
 export default function Tab() {
   const navigation:any = useNavigation();
   const [categories, setCategories] = useState<Tables<'category'>[]>([]);
+
+  const {resetFilters} = useFilterStore();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -24,6 +27,7 @@ export default function Tab() {
     };
 
     fetchCategories();
+    resetFilters(); // Reset filters when entering the search tab
   }, []);
   return (
     <SafeAreaView

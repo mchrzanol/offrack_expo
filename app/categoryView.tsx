@@ -9,11 +9,14 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import fetchClothesByCategoryAPI from './api/fetchClothesByCategory';
+import { useFilterStore } from './store/filterStore';
 
 const categoryView = () => {
     const navigation:any = useNavigation();
     const route = useRoute();
     const {category_id, category_name} = route.params as {category_id: number, category_name:string};
+
+    const {sortBy, brandIds, priceRange, resetFilters} = useFilterStore();
 
     const [clothes, setClothes] = useState<(Tables<'clothes'>  & {
         brand: {
@@ -39,7 +42,7 @@ const categoryView = () => {
         }
 
         fetchClothesByCategory();
-    }, [category_id]);
+    }, [category_id, sortBy, brandIds, priceRange]);
     
     const onPressClothe = (clothe: Tables<'clothes'> & {
         brand: {
@@ -74,7 +77,7 @@ const categoryView = () => {
             <View className="w-full h-full relative">
                 {/* Top absolute view */}
                 <View className='z-20 p-2 w-full flex-row items-center justify-center bg-transparent relative'>
-                    <Ionicons name="chevron-back" className='p-3 absolute -top-1 left-0' size={28} color="app-secondary" onPress={()=>{navigation.goBack()}}/>
+                    <Ionicons name="chevron-back" className='p-3 absolute -top-1 left-0' size={28} color="app-secondary" onPress={()=>{navigation.goBack(); resetFilters();}}/>
                     <View className='flex-1 items-center justify-center flex-col w-full bg-transparent'>
                         <Text className='text-app-secondary text-2xl font-semibold'>{category_name}</Text>
                         <Text className='text-app-secondary text-lg'>{clothes.length} {"element" + (clothes.length === 1 ? "" : clothes.length == 0 ? "ów" : "y")}</Text>
